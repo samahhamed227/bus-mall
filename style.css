@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+}
+
+h2{
+    text-align: center;
+    color: chocolate;
+        font-family: "Audiowide", sans-serif;
+
+}
+body{
+    background-color: beige;
+}
+
+
+#sec-one{
+    float: left;
+    width: 50%;
+    display: flex;
+}   
+#sec-two{
+    float:left;
+    width: 50%;
+    margin-top: 100px;
+margin-right: 200px;
+
+}
+
+img{
+    display: inline-block;
+    width: 40%;
+    height: 300px;
+    margin-left: 20px;
+
+}
+ul{
+    width: 80%;
+    background-color: cornsilk;
+}
+
+li{
+    font-size: 30px;
+    font-weight: bold;
+    list-style: none;
+    color:black;
+
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+  }
+  
