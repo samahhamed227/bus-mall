@@ -10,6 +10,7 @@ let counttime=0;
 let maxattempt =25;
 let arrofnames =[];
 let arrofvotes =[];
+let last = [];
 // when maxattempt = counttime stop the event
 
 function product(name,source ){
@@ -43,14 +44,9 @@ function product(name,source ){
   new product('water-can','water-can.jpg')//[17]
   new product('wine-glass','wine-glass.jpg')//[18]
 
-
   let leftIndex;
   let centerIndex;
 let rightIndex;
-
-
-
-
 
 function renderThreeimages(){
     leftIndex = generateRandomIndex();  
@@ -63,10 +59,23 @@ function renderThreeimages(){
 
    console.log('Before',rightIndex);
  
-  while(leftIndex === rightIndex ||leftIndex === centerIndex||rightIndex===centerIndex){
+  while(leftIndex === rightIndex ||leftIndex === centerIndex||centerIndex===rightIndex ||
+    last.includes(leftIndex)||
+    last.includes(centerIndex)||
+    last.includes(rightIndex)){
     leftIndex = generateRandomIndex(); 
     rightIndex = generateRandomIndex(); 
-}
+    centerIndex = generateRandomIndex(); 
+
+  
+  }
+  last =[];
+last.push(leftIndex,rightIndex,centerIndex);
+console.log( "this is ",last);
+
+
+
+
 
   leftimgelement.src = product.globArr[leftIndex].source;
   centerimgelement.src = product.globArr[centerIndex].source;
@@ -78,13 +87,12 @@ function renderThreeimages(){
   console.log(product.globArr);                                       
 
 
-}renderThreeimages();
+}
+
+renderThreeimages();
 
 
 section.addEventListener('click',handleClick);
-
-
-
 
 
 
@@ -110,6 +118,8 @@ function handleClick(event){
       btn.addEventListener('click', handleShow);
       section.removeEventListener('click',handleClick)
     }
+
+
   }
   
   function handleShow(){
@@ -130,6 +140,9 @@ function handleClick(event){
     }
     
   }
+
+
+
   function generateRandomIndex(){
     return Math.floor(Math.random() * product.globArr.length);
                       
