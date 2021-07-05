@@ -8,6 +8,8 @@ let section =document.getElementById("sec-one");
 let btn =document.getElementById("btn");
 let counttime=0;
 let maxattempt =25;
+let arrofnames =[];
+let arrofvotes =[];
 // when maxattempt = counttime stop the event
 
 function product(name,source ){
@@ -16,6 +18,7 @@ function product(name,source ){
     this.votes = 0;
     this.showing=0;
     product.globArr.push(this);
+    arrofnames.push(this.name);
   }
   
   product.globArr = [];
@@ -46,10 +49,7 @@ function product(name,source ){
 let rightIndex;
 
 
-function generateRandomIndex(){
-    return Math.floor(Math.random() * product.globArr.length);
-                      
-}
+
 
 
 function renderThreeimages(){
@@ -106,21 +106,61 @@ function handleClick(event){
               }
             renderThreeimages();
     }else{
-        btn.addEventListener('click', renderList);
-
+     
+      btn.addEventListener('click', handleShow);
+      section.removeEventListener('click',handleClick)
     }
-   
   }
   
-  
+  function handleShow(){
+    renderList();
+    getchart();
+    btn.removeEventListener('click',handleShow);
+  }  
+  let arrofshow =[];
   function renderList(){
     const ul = document.getElementById('unList');
     for(let i = 0 ; i < product.globArr.length; i++){
+      arrofvotes.push(product.globArr[i].votes);
+      arrofshow.push(product.globArr[i].showing);
+
       let li = document.createElement('li');
       ul.appendChild(li);
-      li.textContent = `* ${product.globArr[i].name} has this number of showing ${product.globArr[i].showing} has this number of times the votied  ${product.globArr[i].votes } .`
+      li.textContent = `* ${product.globArr[i].name} has this number of showing ${product.globArr[i].showing} has this number of times the votied  ${product.globArr[i].votes  }  .`
     }
     
   }
+  function generateRandomIndex(){
+    return Math.floor(Math.random() * product.globArr.length);
+                      
+}
   
-  
+function getchart(){
+
+  let ctx = document.getElementById('myChart').getContext('2d');
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:arrofnames ,
+        datasets: [{
+            label: 'number of Votes',
+            data:arrofvotes ,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+              
+            ],
+            borderWidth: 1
+        },{
+          label: '# of Shown',
+          data: arrofshow,
+          backgroundColor: [
+            'rgb(54, 162, 235)'
+          ]
+        }]
+    },
+})
+}
