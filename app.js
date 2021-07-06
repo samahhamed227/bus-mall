@@ -163,27 +163,27 @@ function handleClick(event){
 
 
   }
-  function getstorage(){
-    const data = localStorage.getItem('image');
-    //console.log(data); //null
-    //[{"name":"bashar","size":"6","isHot":"on","drinkType":"blackCoffee","milk":"regular"}]
+  // function getstorage(){
+  //   const data = localStorage.getItem('image');
+  //   //console.log(data); //null
+  //   //[{"name":"bashar","size":"6","isHot":"on","drinkType":"blackCoffee","milk":"regular"}]
 
 
 
-    const convertedArr2 =JSON.parse(data);
+  //   const convertedArr2 =JSON.parse(data);
 
-    if(convertedArr2 != null){
-      new product(convertedArr2.name,convertedArr2.source,convertedArr2.votes,convertedArr2.showing)
-     console.log('-------');
-     console.log(product.globArr);
-     product.globArr=convertedArr2;
+  //   if(convertedArr2 != null){
+  //     new product(convertedArr2.name,convertedArr2.source,convertedArr2.votes,convertedArr2.showing)
+  //    console.log('-------');
+  //    console.log(product.globArr);
+  //    product.globArr=convertedArr2;
     
-    }
+  //   }
 
-    handleShow();
+  //   handleShow();
 
     
-  }
+  // }
   
 
 
