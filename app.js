@@ -20,21 +20,13 @@ function product(name,source ){
     this.showing=0;
     product.globArr.push(this);
     arrofnames.push(this.name);
-    product.newarr.push(this.votes);
+   
     saveToLs();
 
   }
   
   product.globArr = [];
-function newob(){
-  const data = localStorage.getItem('image');
-    //console.log(d
 
-
-    const convertedArr2 =JSON.parse(data);
-    console.log(convertedArr2);
-  if(convertedArr2!==null){
-    product.newarr = convertedArr2;
   new product('bag','bag.jpg'); // [0]
   new product('banana', 'banana.jpg'); //[1]
   new product('bathroom','bathroom.jpg');//[2]
@@ -55,13 +47,9 @@ function newob(){
   new product('water-can','water-can.jpg')//[17]
   new product('wine-glass','wine-glass.jpg')//[18]
 
-}
-else{
-const getnew = JSON.parse(localStorage.getItem(product.globArr))
-}
-}
 
-newob();
+
+
   let leftIndex;
   let centerIndex;
 let rightIndex;
@@ -147,7 +135,7 @@ function handleClick(event){
   function handleShow(){
     renderList();
     getchart();
-    newob();
+saveToLs();
     btn.removeEventListener('click',handleShow);
 
   } 
@@ -157,33 +145,33 @@ function handleClick(event){
   function saveToLs(){
 
     // we need to convert this array of objects
-    const convertedArr = JSON.stringify(product.newarr);
+    const convertedArr = JSON.stringify(product.globArr);
     console.log( "length :"+convertedArr.length);
     localStorage.setItem('image', convertedArr);
 
 
   }
-  // function getstorage(){
-  //   const data = localStorage.getItem('image');
+   function getstorage(){
+     const data = localStorage.getItem('image');
   //   //console.log(data); //null
   //   //[{"name":"bashar","size":"6","isHot":"on","drinkType":"blackCoffee","milk":"regular"}]
 
 
 
-  //   const convertedArr2 =JSON.parse(data);
+    const convertedArr2 =JSON.parse(data);
 
-  //   if(convertedArr2 != null){
-  //     new product(convertedArr2.name,convertedArr2.source,convertedArr2.votes,convertedArr2.showing)
-  //    console.log('-------');
-  //    console.log(product.globArr);
-  //    product.globArr=convertedArr2;
+     if(convertedArr2 != null){
+      new product(convertedArr2.name,convertedArr2.source,convertedArr2.votes,convertedArr2.showing)
+      console.log('-------');
+      console.log(product.globArr);
+      product.globArr=convertedArr2;
     
-  //   }
+  }
 
-  //   handleShow();
+     handleShow();
 
     
-  // }
+   }
   
 
 
