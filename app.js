@@ -21,10 +21,10 @@ function product(name,source ){
     product.globArr.push(this);
     arrofnames.push(this.name);
    
-    saveToLs();
+    // saveToLs();
 
   }
-  
+
   product.globArr = [];
 
   new product('bag','bag.jpg'); // [0]
@@ -121,13 +121,12 @@ function handleClick(event){
               }
             renderThreeimages();
     }else{
-      const strigglob =JSON.stringify(product.globArr);
-     localStorage.setItem(product.globArr,strigglob)
+
       btn.addEventListener('click', handleShow);
       section.removeEventListener('click',handleClick)
+
     }
 
-    saveToLs();
 
   }
 
@@ -135,7 +134,7 @@ function handleClick(event){
   function handleShow(){
     renderList();
     getchart();
-saveToLs();
+//saveToLs();
     btn.removeEventListener('click',handleShow);
 
   } 
@@ -148,29 +147,18 @@ saveToLs();
     const convertedArr = JSON.stringify(product.globArr);
     console.log( "length :"+convertedArr.length);
     localStorage.setItem('image', convertedArr);
-
-
   }
    function getstorage(){
      const data = localStorage.getItem('image');
-  //   //console.log(data); //null
-  //   //[{"name":"bashar","size":"6","isHot":"on","drinkType":"blackCoffee","milk":"regular"}]
-
-
-
     const convertedArr2 =JSON.parse(data);
-
-     if(convertedArr2 != null){
+     if(convertedArr2){
       new product(convertedArr2.name,convertedArr2.source,convertedArr2.votes,convertedArr2.showing)
       console.log('-------');
       console.log(product.globArr);
       product.globArr=convertedArr2;
-    
   }
+    // handleShow();
 
-     handleShow();
-
-    
    }
   
 
@@ -186,8 +174,10 @@ saveToLs();
       ul.appendChild(li);
       li.textContent = `* ${product.globArr[i].name} has this number of showing ${product.globArr[i].showing} has this number of times the votied  ${product.globArr[i].votes  }  .`
     }
-    
+    saveToLs();
+
   }
+  getstorage();
 
 
 
@@ -225,4 +215,3 @@ let myChart = new Chart(ctx, {
     },
 })
 }
-  
